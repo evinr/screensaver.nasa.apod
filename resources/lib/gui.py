@@ -112,9 +112,9 @@ class GUI(xbmcgui.WindowXMLDialog):
     def parseJPG(self, response):
         if response:
             try:
-                match = re.findall(r"image.*?\.jpg", response.text) 
+                match = re.findall(r"image/.*?\"", response.text) 
                 if match:
-                    self.prefetchedImagePath = str("/" + match[0])
+                    self.prefetchedImagePath = str("/" + match[0][:-1])
                 else:
                     self.log(f"parseJPG could not find a JPG in HTML response. Returning from static list.", xbmc.LOGDEBUG)
                     # if no match is found then return static images
